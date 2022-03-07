@@ -46,7 +46,7 @@ public class breweryController {
 	
     //Adding and deleting breweries for admins only
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/breweries", method = RequestMethod.POST)
 	public void addNewBrewery(@RequestBody Brewery aBrewery) throws NotAllowedException {
 		breweryDao.addNewBrewery(aBrewery);

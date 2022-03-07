@@ -73,7 +73,7 @@ public class BeerController {
 		return "addBeer";
 	}
 	
-	@PreAuthorize("hasRole('_BREWER')")
+	@PreAuthorize("hasRole('BREWER')")
 	@RequestMapping(path = "/beers/{beerId}", method = RequestMethod.DELETE)
 	public void deleteABeer(@PathVariable Long beerId) throws NotAllowedException {
 		beerDAO.deleteBeer(beerId);
@@ -81,7 +81,7 @@ public class BeerController {
 	
 
 	
-	@PreAuthorize("hasRole('_BREWER')")
+	@PreAuthorize("hasRole('BREWER')")
 	@RequestMapping(path= "/beers", method = RequestMethod.PUT)
 	public void updateBeer(@RequestBody Beer aBeer) throws NotAllowedException {
 		beerDAO.updateBeer(aBeer);
