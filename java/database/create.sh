@@ -6,4 +6,6 @@ psql -U postgres -d final_capstone -f "$BASEDIR/authTableSetup.sql" &&
 psql -U postgres -d final_capstone -f "$BASEDIR/tabelInit.sql" &&
 psql -U postgres -d final_capstone -f "$BASEDIR/data.sql" 
 psql -U postgres -d final_capstone -f "$BASEDIR/Breweries.sql" 
+psql -U postgres -d final_capstone -f "$BASEDIR/schema.sql" 
+psql -U postgres -d final_capstone -f "$BASEDIR/users.sql" 
 psql -U postgres -d final_capstone -f "$BASEDIR/Beers.sql" 
