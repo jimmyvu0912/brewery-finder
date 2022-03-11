@@ -7,14 +7,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.dao.beerDao;
 import com.techelevator.dao.breweryDao;
@@ -68,9 +64,9 @@ public class BeerController {
     // For brewers
 
 	@PreAuthorize("hasRole('BREWER')")
-	@RequestMapping(path="/addBeer", method=RequestMethod.GET)
-	public String showAddBeer() throws NotAllowedException {
-		return beerDAO.get;
+	@RequestMapping(path="/addBeer", method=RequestMethod.POST)
+	public void addBeer(@RequestBody Beer aBeer) throws NotAllowedException {
+		beerDAO.addBeer(aBeer);
 	}
 	
 	@PreAuthorize("hasRole('BREWER')")

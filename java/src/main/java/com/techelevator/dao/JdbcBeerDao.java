@@ -7,6 +7,7 @@ import com.techelevator.dao.beerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
@@ -62,6 +63,12 @@ public class JdbcBeerDao implements beerDao {
 				+ "WHERE beer_id = ?";
 		jdbcTemplate.update(sqlUpdateBeer, aBeer.getName(), aBeer.getAbv(), aBeer.getInfo(), aBeer.getImgUrl(),
 				aBeer.getBreweryId(), aBeer.getId());
+	}
+
+	@Override
+	public void addBeer(Beer aBeer) {
+		String sqlAddBeer = "INSERT INTO beers (name, abv, info, img_url, brewery_id";
+		jdbcTemplate.update(sqlAddBeer, aBeer.getName(), aBeer.getAbv(), aBeer.getInfo(), aBeer.getImgUrl(), aBeer.getBreweryId());
 	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {

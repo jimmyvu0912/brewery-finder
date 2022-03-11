@@ -16,5 +16,5 @@ public interface beerDao {
 
     void updateBeer(Beer aBeer);
 
-    
+    void addBeer(Beer aBeer);
 }
