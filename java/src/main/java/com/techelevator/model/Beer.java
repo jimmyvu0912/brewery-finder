@@ -1,4 +1,4 @@
-package com.techelevator.application.model;
+package com.techelevator.model;
 import java.math.BigDecimal;
 public class Beer {
 	
@@ -28,7 +28,7 @@ public class Beer {
 		this.name = name;
 	}
 	
-	public float getAbv() {
+	public String getAbv() {
 		return abv;
 	}
 	

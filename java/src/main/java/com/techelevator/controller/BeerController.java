@@ -1,4 +1,4 @@
-package com.techelevator.application.controller;
+package com.techelevator.controller;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,26 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techelevator.application.dao.beerDao;
-import com.techelevator.application.dao.breweryDao;
-import com.techelevator.application.dao.reviewDao;
-import com.techelevator.application.model.Beer;
-import com.techelevator.application.model.Brewery;
-import com.techelevator.application.model.User;
+import com.techelevator.dao.beerDao;
+import com.techelevator.dao.breweryDao;
+import com.techelevator.dao.reviewDao;
+import com.techelevator.model.Beer;
+import com.techelevator.model.Brewery;
+import com.techelevator.model.User;
 
 @RestController
-@CrossOrigin 
+@CrossOrigin
 public class BeerController {
 	@Autowired
 	private beerDao beerDAO;
-	
+
 	@Autowired
 	private breweryDao breweryDAO;
-	
+
 	@Autowired
 	private reviewDao reviewDAO;
-	
-	
+
 	public BeerController(beerDao beerDAO) {
 		this.beerDAO = beerDAO;
 	}
@@ -70,7 +70,7 @@ public class BeerController {
 	@PreAuthorize("hasRole('BREWER')")
 	@RequestMapping(path="/addBeer", method=RequestMethod.GET)
 	public String showAddBeer() throws NotAllowedException {
-		return "addBeer";
+		return beerDAO.get;
 	}
 	
 	@PreAuthorize("hasRole('BREWER')")

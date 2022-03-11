@@ -1,25 +1,26 @@
-package com.techelevator.application.jdbcdao;
+package com.techelevator.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.dao.beerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
-import com.techelevator.application.dao.beerDao;
-import com.techelevator.application.model.Beer;
+import com.techelevator.dao.beerDao;
+import com.techelevator.model.Beer;
 
 @Component
-public class jdbcBeerDao implements beerDao {
+public class JdbcBeerDao implements beerDao {
 	
 	private JdbcTemplate jdbcTemplate;
 	
 	
 	@Autowired
-	public jdbcBeerDao(DataSource dataSource) {
+	public JdbcBeerDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
@@ -57,24 +58,22 @@ public class jdbcBeerDao implements beerDao {
 	
 	@Override
 	public void updateBeer(Beer aBeer) {
-		String sqlUpdateBeer = "UPDATE beers SET name = ?, abv = ?, ibu = ?, info = ?, img_url = ?, brewery_id = ?, is_active = ?"
+		String sqlUpdateBeer = "UPDATE beers SET name = ?, abv = ?, info = ?, img_url = ?, brewery_id = ?"
 				+ "WHERE beer_id = ?";
-		jdbcTemplate.update(sqlUpdateBeer, aBeer.getName(), aBeer.getAbv(), aBeer.getIbu(), aBeer.getInfo(), aBeer.getImgUrl(),
-				aBeer.getBreweryId(), aBeer.isActive(), aBeer.getId());
+		jdbcTemplate.update(sqlUpdateBeer, aBeer.getName(), aBeer.getAbv(), aBeer.getInfo(), aBeer.getImgUrl(),
+				aBeer.getBreweryId(), aBeer.getId());
 	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {
 		Beer newBeer = new Beer();
-		
-		newBeer.setId(row.getLong("beer_id"));
+
 		newBeer.setName(row.getString("name").toUpperCase());
-		newBeer.setAbv(row.getFloat("abv"));
-		newBeer.setIbu(row.getInt("ibu"));
+		newBeer.setAbv(row.getString("abv"));
 		newBeer.setType(row.getString("type"));
 		newBeer.setInfo(row.getString("info"));
-		newBeer.setImgUrl(row.getString("img_url"));
+		newBeer.setImgUrl(row.getString("beer_image_url"));
 		newBeer.setBreweryId(row.getLong("brewery_id"));
-		newBeer.setActive(row.getBoolean("is_active"));
+		newBeer.setId(row.getLong("beer_id"));
 
 		return newBeer;
 	}

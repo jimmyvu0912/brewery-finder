@@ -1,8 +1,8 @@
-package com.techelevator.application.dao;
+package com.techelevator.dao;
 
 import java.util.List;
 
-import com.techelevator.application.model.Brewery;
+import com.techelevator.model.Brewery;
 
 public interface breweryDao {
 

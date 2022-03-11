@@ -1,4 +1,4 @@
-package com.techelevator.application.controller;
+package com.techelevator.controller;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techelevator.application.dao.breweryDao;
-import com.techelevator.application.model.Brewery;
+import com.techelevator.dao.breweryDao;
+import com.techelevator.model.Brewery;
 
 @RestController
 @CrossOrigin 
-public class breweryController {
+public class BreweryController {
 	
 	@Autowired
 	private breweryDao breweryDao;
 	
-	public breweryController(breweryDao breweryDao) {
+	public BreweryController(breweryDao breweryDao) {
 		this.breweryDao = breweryDao;
 	}
 	
@@ -33,7 +33,7 @@ public class breweryController {
 	
 	@PreAuthorize("permitAll")
 	@RequestMapping(path = "/breweries/{breweryId}", method = RequestMethod.GET)
-	public Brewery getBrewerybyBreweryID(@PathVariable Long breweryId) throws NotFoundException {
+	public Brewery getBreweryByBreweryID(@PathVariable Long breweryId) throws NotFoundException {
 		return breweryDao.getBreweryById(breweryId);
 	}
 	

@@ -1,4 +1,4 @@
-package com.techelevator.application.model;
+package com.techelevator.model;
 
 public class Brewery {
 	private Long breweryId;
@@ -28,15 +28,15 @@ public class Brewery {
 		this.city = city;
 	}
 	public String getState() {
-		return zipcode;
+		return state;
 	}
-	public void setState(String zipcode) {
-		this.zipcode = zipcode;
+	public void setState(String state) {
+		this.state = state;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getBreweryLogoUrl() {
