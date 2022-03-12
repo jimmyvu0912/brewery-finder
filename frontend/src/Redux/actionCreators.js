@@ -13,3 +13,19 @@ export const addUser = (user) => ({
 export const deleteUser = () => ({
     type: ActionTypes.DELETE_USER
 })
+
+export const addReview = () => ({
+    type: ActionTypes.ADD_REVIEW
+})
+
+export const addBeer = () => ({
+    type: ActionTypes.ADD_BEER
+})
+
+export const deleteBeer = () => ({
+    type: ActionTypes.DELETE_BEER
+})
+
+export const addBrewery = () => ({
+    type: ActionTypes.ADD_BREWERY
+})
